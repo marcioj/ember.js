@@ -29,6 +29,10 @@
 * [BUGFIX] Calling toString at extend time causes Ember.View to memoize and return the same value for different instances.
 * [BUGFIX] Fix ember-testing-lazy-routing.
 * [BUGFIX] Fixed how parentController property of an itemController when nested. Breaking for apps that rely on previous broken behavior of an itemController's `parentController` property skipping its ArrayController when nested.
+* Slight, sensible alteration to URL parsing logic: prefer fewer stars to more stars; if any stars, prefer more dynamics and statics to fewer; if no stars, prefer fewer dynamics and more statics
+
+### Ember 1.4.0-beta.3 (January 20, 2014)
+
 * Document the send method on Ember.ActionHandler.
 * Document Ember.Route #controllerName and #viewName properties.
 * Allow jQuery version 1.11 and 2.1.
