@@ -317,6 +317,13 @@ Ember.metaPath = function metaPath(obj, path, writable) {
   return value;
 };
 
+var undefinedDescriptor = {
+  configurable: true,
+  writable: true,
+  enumerable: false,
+  value: undefined
+};
+
 /**
   Wraps the passed function so that `this._super` will point to the superFunc
   when the function is invoked. This is the primitive we use to implement
@@ -332,6 +339,9 @@ Ember.metaPath = function metaPath(obj, path, writable) {
 Ember.wrap = function(func, superFunc) {
   function superWrapper() {
     var ret, sup = this.__nextSuper;
+    if (!this.hasOwnProperty('__nextSuper')) {
+      o_defineProperty(this, '__nextSuper', undefinedDescriptor);
+    }
     this.__nextSuper = superFunc;
     ret = func.apply(this, arguments);
     this.__nextSuper = sup;
